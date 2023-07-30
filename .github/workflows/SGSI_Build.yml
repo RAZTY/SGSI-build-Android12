@@ -72,10 +72,13 @@ jobs:
           ls "upload"
 
       - name: Upload SGSI to GH-Release
-        uses: ncipollo/release-action@v1.8.6
+        uses: softprops/action-gh-release@v1
         with:
-          artifacts: ${{ github.workspace }}/SGSI-build-tool/upload/*
-          name: "${{ steps.config.outputs.os_type }}${{ steps.config.outputs.build_type }}-Android${{ steps.config.outputs.version }}-unpack"
-          tag: "${{ steps.config.outputs.os_type }}${{ steps.config.outputs.build_type }}-${{ steps.config.outputs.version }}-${{ github.run_number }}"
-          bodyFile: "${{ github.workspace}}/SGSI-build-tool/SGSI/build_info.txt"
-          token: ${{ secrets.GITHUB_TOKEN }}
+           files: ${{ github.workspace }}/SGSI-build-tool/upload/*
+           tag_name: "${{ steps.config.outputs.os_type }}${{ steps.config.outputs.build_type }}-${{ steps.config.outputs.version }}-${{ github.run_number }}"
+           body: "${{ github.workspace }}/SGSI-build-tool/SGSI/build_info.txt"
+           draft: false
+           prerelease: false
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    
