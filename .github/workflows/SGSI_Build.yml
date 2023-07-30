@@ -70,15 +70,14 @@ jobs:
               mv "${{ steps.config.outputs.repack_name }}" "upload/${{ steps.config.outputs.repack_name }}"
           fi
           ls "upload"
-
-      - name: Upload SGSI to GH-Release
-        uses: softprops/action-gh-release@v1
-        with:
-           files: ${{ github.workspace }}/SGSI-build-tool/upload/*
-           tag_name: "${{ steps.config.outputs.os_type }}${{ steps.config.outputs.build_type }}-${{ steps.config.outputs.version }}-${{ github.run_number }}"
-           body: "${{ github.workspace }}/SGSI-build-tool/SGSI/build_info.txt"
-           draft: false
-           prerelease: false
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    
+          
+          - name: Upload to Release
+          if: github.event.inputs.release == 'true'
+          uses: softprops/action-gh-release@v1
+          with:
+          files: ${{ github.workspace }}/SGSI-build-tool/upload/*
+          name: "${{ steps.config.outputs.os_type }}${{ steps.config.outputs.build_type }}-Android${{ steps.config.outputs.version }}-unpack"
+          tag_name: "${{ steps.config.outputs.os_type }}${{ steps.config.outputs.build_type }}-${{ steps.config.outputs.version }}-${{ github.run_number }}"
+          body: "${{ github.workspace}}/SGSI-build-tool/SGSI/build_info.txt"
+          env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
