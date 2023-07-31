@@ -72,13 +72,10 @@ jobs:
           ls "upload"
           
       - name: Upload to Release
-        uses: softprops/action-gh-release@v1
-        with:
-         files: |
-          ${{ github.workspace }}/SGSI-build-tool/upload/*,
-          ${{ github.workspace }}/SGSI-build-tool/SGSI/build_info.txt,
-          ${{ github.workspace }}/path/to/your/other/files.zip
+        uses: actions/upload-artifact@v3 
+        with: 
          name: "${{ steps.config.outputs.os_type }}${{ steps.config.outputs.build_type }}-Android${{ steps.config.outputs.version }}-unpack"
-         tag_name: "${{ steps.config.outputs.os_type }}${{ steps.config.outputs.build_type }}-${{ steps.config.outputs.version }}-${{ github.run_number }}"
-         body: "${{ github.workspace }}/SGSI-build-tool/SGSI/build_info.txt"
-         token: ${{ secrets.GITHUB_TOKEN }}
+         path: |
+           ${{ github.workspace }}/SGSI-build-tool/upload/*
+           ${{ github.workspace}}/SGSI-build-tool/SGSI/build_info.txt
+           ${{ github.workspace }}/path/to/your/other/files.zip
