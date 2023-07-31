@@ -72,7 +72,6 @@ jobs:
           ls "upload"
           
       - name: Upload to Release
-        if: github.event.inputs.release == 'true'
         uses: softprops/action-gh-release@v1
         with:
          files: |
