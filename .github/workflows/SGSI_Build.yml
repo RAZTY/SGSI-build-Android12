@@ -71,7 +71,7 @@ jobs:
           fi
           ls "upload"
           
-      - name: Upload to Release
+      - name: Upload to Artifact
         uses: actions/upload-artifact@v3 
         with: 
          name: "${{ steps.config.outputs.os_type }}${{ steps.config.outputs.build_type }}-Android${{ steps.config.outputs.version }}-unpack"
