@@ -1,8 +1,32 @@
 name: SGSI_Build
 
 on:
-  watch:
-    types: [started]
+ workflow_dispatch:
+   inputs:
+    ROM_URL:
+      description: 'ROM_URL'
+      required: true
+      default: 'https://7o0dnqbqjqnpos3co77pkrqdv2hpdu0k4vf3igrfg08h6ui71a8fuf41.qc.dolfincdnx.net:44219/xdispatchb7fe247678f120f4/bigota.d.miui.com/22.10.17/miui_THYMEPRE_22.10.17_05bd3b5e41_12.0.zip?BSLuBan=eyJob3N0IjoiYmlnb3RhLmQubWl1aS5jb20iLCJic3JlcWlkIjoiYTgzNTdhMDA4MzlhODQwNTg1MDU2MzYzYjJlMTk4ZTciLCJjYWNoZV9rZXkiOiJcLzIyLjEwLjE3XC9taXVpX1RIWU1FUFJFXzIyLjEwLjE3XzA1YmQzYjVlNDFfMTIuMC56aXAiLCJkbnNfaG9zdCI6InBmMDAzLnYuYnNnc2xiLmNuIiwia2V5IjoiOGM2MmFhZTI3OWQwM2Y2MDI4YTUyNzE4ZGQ1ZmIzZjUiLCJ0cyI6MTY5MTA0ODgwNn0='
+    ZIP_NAME:
+      description: 'ZIP_NAME'
+      required: true
+      default: 'miui_THYMEPRE_22.10.17_05bd3b5e41_12.0.zip'
+    OS_TYPE:
+      description: 'OS_TYPE'
+      required: true
+      default: 'Generic'
+    SGSI_TYPE:
+      description: 'SGSI_TYPE(AB, A, or BOTH)'
+      required: true
+      default: 'AB'
+    REPACK_NAME:
+      description: 'REPACK_NAME'
+      required: true
+      default: 'SGSI.zip'
+    VERSION:
+      description: 'VERSION'
+      required: true
+      default: '12'
 
 jobs:
   build:
